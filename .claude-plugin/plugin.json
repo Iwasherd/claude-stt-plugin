@@ -1,0 +1,10 @@
+{
+  "name": "stt",
+  "description": "Speech-to-Text plugin using Whisper. Record voice and transcribe to text.",
+  "version": "1.0.0",
+  "author": {
+    "name": "washerd"
+  },
+  "repository": "https://github.com/washerd/claude-stt-plugin",
+  "license": "MIT"
+}
