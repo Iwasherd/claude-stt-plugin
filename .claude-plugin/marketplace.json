@@ -1,8 +1,10 @@
 {
   "name": "iwasherd-whisper-stt",
   "owner": {
-    "name": "Iwasherd",
-    "url": "https://github.com/Iwasherd"
+    "name": "Iwasherd"
+  },
+  "metadata": {
+    "description": "Claude Code marketplace for Whisper-based Speech-to-Text plugin with GPU acceleration"
   },
   "plugins": [
     {
@@ -11,8 +13,7 @@
       "description": "Speech-to-Text plugin using Whisper AI with GPU acceleration. Global hotkey Ctrl+Shift+Space to transcribe voice with multi-language support.",
       "version": "1.0.0",
       "author": {
-        "name": "Iwasherd",
-        "url": "https://github.com/Iwasherd"
+        "name": "Iwasherd"
       },
       "homepage": "https://github.com/Iwasherd/claude-stt-plugin",
       "repository": "https://github.com/Iwasherd/claude-stt-plugin",

@@ -1,5 +1,5 @@
 {
-  "name": "stt",
+  "name": "whisper-stt",
   "description": "Speech-to-Text plugin using Whisper AI. Global hotkey Ctrl+Shift+Space to transcribe voice.",
   "version": "1.0.0",
   "author": {
