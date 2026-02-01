@@ -1,0 +1,32 @@
+{
+  "name": "iwasherd-whisper-stt",
+  "owner": {
+    "name": "Iwasherd",
+    "url": "https://github.com/Iwasherd"
+  },
+  "plugins": [
+    {
+      "name": "whisper-stt",
+      "source": "./",
+      "description": "Speech-to-Text plugin using Whisper AI with GPU acceleration. Global hotkey Ctrl+Shift+Space to transcribe voice with multi-language support.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Iwasherd",
+        "url": "https://github.com/Iwasherd"
+      },
+      "homepage": "https://github.com/Iwasherd/claude-stt-plugin",
+      "repository": "https://github.com/Iwasherd/claude-stt-plugin",
+      "license": "MIT",
+      "keywords": [
+        "speech-to-text",
+        "stt",
+        "voice",
+        "whisper",
+        "transcription",
+        "gpu",
+        "docker",
+        "accessibility"
+      ]
+    }
+  ]
+}
