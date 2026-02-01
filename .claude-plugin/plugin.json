@@ -1,10 +1,12 @@
 {
   "name": "stt",
-  "description": "Speech-to-Text plugin using Whisper. Record voice and transcribe to text.",
+  "description": "Speech-to-Text plugin using Whisper AI. Global hotkey Ctrl+Shift+Space to transcribe voice.",
   "version": "1.0.0",
   "author": {
-    "name": "washerd"
+    "name": "Iwasherd"
   },
-  "repository": "https://github.com/washerd/claude-stt-plugin",
-  "license": "MIT"
+  "repository": "https://github.com/Iwasherd/claude-stt-plugin",
+  "homepage": "https://github.com/Iwasherd/claude-stt-plugin",
+  "license": "MIT",
+  "keywords": ["speech", "text", "whisper", "voice", "transcription", "stt"]
 }

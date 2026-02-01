@@ -1,90 +1,99 @@
-# Claude Code STT Plugin
+# WhisperSTT - Claude Code Plugin
 
-Speech-to-Text plugin for Claude Code using Whisper.
+Speech-to-Text plugin for Claude Code using Whisper AI with GPU acceleration.
 
 ## Features
 
-- Record voice from microphone
-- Transcribe using Whisper (GPU accelerated)
-- Translate to multiple languages (en, ru, uk, cs, es, pl)
-- Auto-detect source language
-
-## Requirements
-
-- Docker with NVIDIA GPU support
-- `stt-service:latest` Docker image
-- ffmpeg (for audio recording)
-- Python 3.10+
+- **Global Hotkey** - `Ctrl+Shift+Space` to record from anywhere
+- **Auto-type** - Transcribed text automatically typed into Claude Code
+- **GPU Accelerated** - Uses NVIDIA GPU via Docker
+- **Multi-language** - English, Russian, Ukrainian, Czech, Spanish, Polish
+- **Auto-detect** - Automatically detects source language
 
 ## Installation
 
-### Option 1: Local Installation
+### Option 1: Claude Code Plugin (Recommended)
 
 ```bash
-# Clone or copy the plugin
-cd ~/projects/stt-for-develop/claude-stt-plugin
+# Install the plugin
+claude plugin add github:Iwasherd/claude-stt-plugin
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Add MCP server to Claude Code
-claude mcp add stt python3 /full/path/to/claude-stt-plugin/stt_mcp_server.py
+# Run the installer
+~/.claude/plugins/stt/install.sh
 ```
 
-### Option 2: Use Plugin Directory
+### Option 2: Manual Installation
 
 ```bash
-# Run Claude Code with the plugin
-claude --plugin-dir ~/projects/stt-for-develop/claude-stt-plugin
+# Clone the repo
+git clone https://github.com/Iwasherd/claude-stt-plugin.git
+cd claude-stt-plugin
+
+# Run installer
+chmod +x install.sh
+./install.sh
 ```
 
-### Option 3: Install from GitHub
+## Requirements
 
-```bash
-# Add plugin from GitHub (after pushing to repo)
-claude plugin add github:washerd/claude-stt-plugin
-```
+- Ubuntu/Linux with X11
+- Docker with NVIDIA GPU support
+- Python 3.10+
+- `stt-service:latest` Docker image (Whisper + M2M100)
 
 ## Usage
 
-### Via Skill Command
+1. **Start the app:**
+   ```bash
+   ~/.local/share/whisper-stt/WhisperSTT
+   ```
+   Or find "Whisper STT" in your applications menu.
 
-```
-/stt:transcribe
-/stt:transcribe 10        # Record for 10 seconds
-/stt:transcribe 5 ru      # Record 5s, translate to Russian
-```
+2. **Click "Start Container"** in the app (wait ~30-60s for model loading)
 
-### Via MCP Tools
+3. **Use the global hotkey:**
+   - Press `Ctrl + Shift + Space` → starts recording
+   - Speak your message
+   - Press `Ctrl + Shift + Space` again → stops and transcribes
+   - Text is automatically typed into the active window (Claude Code)
 
-The plugin exposes these tools:
+## Docker Image
 
-- `record_and_transcribe` - Record and transcribe audio
-- `start_stt_container` - Start the Whisper Docker container
-- `stop_stt_container` - Stop the container
+The plugin requires the `stt-service:latest` Docker image with:
+- Whisper ASR model
+- M2M100 translation model
+- CUDA support
 
-### Via Hotkey
-
-Add to `~/.claude/keybindings.json`:
-
-```json
-{
-  "bindings": [
-    {
-      "key": "alt+v",
-      "command": "skill",
-      "args": { "name": "stt:transcribe" }
-    }
-  ]
-}
+Build from `docker/` directory if you have the base image:
+```bash
+cd docker
+docker build -t stt-service:latest .
 ```
 
-## Configuration
+## File Structure
 
-Environment variables:
+```
+claude-stt-plugin/
+├── .claude-plugin/
+│   └── plugin.json      # Plugin manifest
+├── skills/
+│   └── transcribe/
+│       └── SKILL.md     # /stt:transcribe command
+├── app/
+│   ├── stt_app.py       # Main GUI application
+│   ├── icon.svg         # App icon
+│   └── build.sh         # Build script
+├── docker/
+│   ├── Dockerfile       # Docker build file
+│   └── server.py        # FastAPI STT server
+├── install.sh           # Installation script
+└── README.md
+```
 
-- `STT_HOST_PORT` - Host port for STT service (default: 8001)
-- `STT_IMAGE` - Docker image to use (default: stt-service:latest)
+## Skill Commands
+
+After installation, use in Claude Code:
+- `/stt:transcribe` - Shows usage instructions
 
 ## License
 
