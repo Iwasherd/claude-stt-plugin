@@ -1,0 +1,16 @@
+[Unit]
+Description=STT Hotkey Daemon - Speech to Text with Alt+F9
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/washerd/projects/stt-for-develop/venv/bin/python /home/washerd/projects/stt-for-develop/claude-stt-plugin/stt_hotkey.py
+Restart=on-failure
+RestartSec=5
+Environment=DISPLAY=:1
+Environment=STT_PORT=8001
+Environment=STT_LANGUAGE=en
+Environment=STT_AUTO_TYPE=false
+
+[Install]
+WantedBy=default.target
